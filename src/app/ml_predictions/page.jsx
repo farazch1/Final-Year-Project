@@ -12,22 +12,36 @@ export default function MLPrediction() {
   const [inputDate, setInputDate] = useState("");
   const [selectedReach, setSelectedReach] = useState("");
   const [predictionResult, setPredictionResult] = useState(null);
+  const [loading, setLoading] = useState(false);
   const reportRef = useRef();
 
-  const handlePredict = (e) => {
+  const handlePredict = async (e) => {
     e.preventDefault();
-
     if (!inputDate || !selectedReach) {
-      alert("Please select both a date and a reach!");
+      alert("Please select both a date and a reservoir!");
       return;
     }
-
-    const fakePrediction = 83200; // Simulated value
-    const resultText = `Predicted Flow for ${selectedReach.replaceAll(
-      "_",
-      " "
-    )} on ${inputDate}: ${fakePrediction}`;
-    setPredictionResult(resultText);
+    setLoading(true);
+    setPredictionResult(null);
+    try {
+      const res = await fetch("http://192.168.18.49:8000/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          date: inputDate,
+          reservoir: selectedReach,
+        }),
+      });
+      if (!res.ok) throw new Error(await res.text());
+      const { prediction } = await res.json();
+      setPredictionResult(
+        `Predicted outflow for ${selectedReach} on ${inputDate}: ${prediction}`
+      );
+    } catch (err) {
+      setPredictionResult("Error: " + err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const generatePDFReport = async () => {
@@ -81,42 +95,63 @@ export default function MLPrediction() {
 
           {/* Prediction Form */}
           <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">
-              Predicting Outflows and Inflows
-            </h2>
-
-            <div className="flex flex-col md:flex-row gap-4 items-center mb-4">
+            <h2 className="text-xl font-bold mb-4">Predict Outflows & Inflows</h2>
+            <form onSubmit={handlePredict} className="flex flex-col md:flex-row gap-4">
               <input
                 type="date"
                 value={inputDate}
                 onChange={(e) => setInputDate(e.target.value)}
-                className="border border-gray-300 p-2 rounded-md w-full md:w-1/3"
+                className="border p-2 rounded w-full md:w-1/3"
               />
-
               <select
                 value={selectedReach}
                 onChange={(e) => setSelectedReach(e.target.value)}
-                className="border border-gray-300 p-2 rounded-md w-full md:w-1/3"
+                className="border p-2 rounded w-full md:w-1/3"
               >
                 <option value="">Select Reservoir</option>
-                <option value="Tarbela">Tarbela</option>
-                <option value="Chashma">Chashma</option>
-                <option value="Taunsa">Taunsa</option>
-                <option value="Guddu">Guddu</option>
-                <option value="Sukkur">Sukkur</option>
-                <option value="Kotri">Kotri</option>
+                {["Tarbela","Chashma","Taunsa","Guddu","Sukkur","Kotri"].map(r => (
+                  <option key={r} value={r}>{r}</option>
+                ))}
               </select>
-
               <button
-                onClick={handlePredict}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow"
+                type="submit"
+                disabled={loading}
+                className={`px-4 py-2 rounded text-white shadow ${
+                  loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+                }`}
               >
-                Predict Outflow
+                {loading ? (
+                  <span className="flex items-center">
+                    <svg
+                      className="animate-spin h-5 w-5 mr-2 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8H4z"
+                      />
+                    </svg>
+                    Predicting…
+                  </span>
+                ) : (
+                  "Predict Outflow"
+                )}
               </button>
-            </div>
+            </form>
 
             {predictionResult && (
-              <div className="text-lg text-green-700 font-semibold mb-4">
+              <div className="mt-4 text-lg text-green-700 font-semibold">
                 {predictionResult}
               </div>
             )}
