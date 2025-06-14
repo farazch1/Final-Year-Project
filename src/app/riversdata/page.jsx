@@ -404,7 +404,7 @@ export default function RiversData() {
           height={500 * scale} // Adjust height based on scale
           className="rounded-lg shadow-md z-10 absolute"
         />
-        <p className="absolute left-[340px] top-[623px] text-[12px] font-semibold text-black z-20">
+        <p className="absolute left-[620px] top-[623px] text-[12px] font-semibold text-black z-20">
           {oneData && oneData.length > 0 && oneData[0].Tarbela_Outflows ? (
             oneData[0].Tarbela_Outflows
           ) : (
@@ -412,7 +412,7 @@ export default function RiversData() {
           )}
         </p>
 
-        <p className="absolute left-[340px] top-[642px] text-[12px] font-semibold text-black z-20">
+        <p className="absolute left-[620px] top-[642px] text-[12px] font-semibold text-black z-20">
           {oneData && oneData.length > 0 && oneData[0].Bal_for_Chashma ? (
             oneData[0].Bal_for_Chashma
           ) : (
@@ -420,7 +420,7 @@ export default function RiversData() {
           )}
         </p>
 
-        <p className="absolute left-[336px] top-[816px] text-[12px] font-semibold text-black z-20">
+        <p className="absolute left-[620px] top-[816px] text-[12px] font-semibold text-black z-20">
           {oneData && oneData.length > 0 && oneData[0].Chashma_upstream ? (
             oneData[0].Chashma_upstream
           ) : (
@@ -428,7 +428,7 @@ export default function RiversData() {
           )}
         </p>
 
-        <p className="absolute left-[336px] top-[836px] text-[12px] font-semibold text-black z-20">
+        <p className="absolute left-[620px] top-[836px] text-[12px] font-semibold text-black z-20">
           {oneData && oneData.length > 0 && oneData[0].Chashma_downstream ? (
             oneData[0].Chashma_downstream
           ) : (
@@ -437,7 +437,7 @@ export default function RiversData() {
         </p>
 
         {/* Kotri */}
-        <p className="absolute left-[327px] top-[1405px] text-[9.5px] font-semibold text-black z-20">
+        <p className="absolute left-[620px] top-[1405px] text-[9.5px] font-semibold text-black z-20">
           {oneData && oneData.length > 0 && oneData[0].Kotri_U_S ? (
             oneData[0].Kotri_U_S
           ) : (
@@ -445,7 +445,7 @@ export default function RiversData() {
           )}
         </p>
 
-        <p className="absolute left-[327px] top-[1417px] text-[9.5px] font-semibold text-black z-20">
+        <p className="absolute left-[620px] top-[1417px] text-[9.5px] font-semibold text-black z-20">
           {oneData && oneData.length > 0 && oneData[0].Kotri_D_S ? (
             oneData[0].Kotri_D_S
           ) : (
@@ -455,7 +455,7 @@ export default function RiversData() {
 
         {/* Taunsa */}
 
-        <p className="absolute left-[335px] top-[1070px] text-[12px] font-semibold text-black z-20">
+        <p className="absolute left-[620px] top-[1070px] text-[12px] font-semibold text-black z-20">
           {oneData && oneData.length > 0 && oneData[0].Taunsa_U_S ? (
             oneData[0].Taunsa_U_S
           ) : (
@@ -463,7 +463,7 @@ export default function RiversData() {
           )}
         </p>
 
-        <p className="absolute left-[335px] top-[1088px] text-[12px] font-semibold text-black z-20">
+        <p className="absolute left-[620px] top-[1088px] text-[12px] font-semibold text-black z-20">
           {oneData && oneData.length > 0 && oneData[0].Taunsa_D_S ? (
             oneData[0].Taunsa_D_S
           ) : (
@@ -472,7 +472,7 @@ export default function RiversData() {
         </p>
 
         {/* Guddu */}
-        <p className="absolute left-[350px] top-[1335px] text-[10px] font-semibold text-black z-20">
+        <p className="absolute left-[620px] top-[1335px] text-[10px] font-semibold text-black z-20">
           {oneData && oneData.length > 0 && oneData[0].Guddu_U_S ? (
             oneData[0].Guddu_U_S
           ) : (
@@ -480,7 +480,7 @@ export default function RiversData() {
           )}
         </p>
 
-        <p className="absolute left-[350px] top-[1349px] text-[10px] font-semibold text-black z-20">
+        <p className="absolute left-[620px] top-[1349px] text-[10px] font-semibold text-black z-20">
           {oneData && oneData.length > 0 && oneData[0].Guddu_D_S ? (
             oneData[0].Guddu_D_S
           ) : (
@@ -489,7 +489,7 @@ export default function RiversData() {
         </p>
 
         {/* Sukkur */}
-        <p className="absolute left-[330px] top-[1375px] text-[10px] font-semibold text-black z-20">
+        <p className="absolute left-[620px] top-[1375px] text-[10px] font-semibold text-black z-20">
           {oneData && oneData.length > 0 && oneData[0].Sukkur_U_S ? (
             oneData[0].Sukkur_U_S
           ) : (
@@ -497,7 +497,7 @@ export default function RiversData() {
           )}
         </p>
 
-        <p className="absolute left-[330px] top-[1390px] text-[10px] font-semibold text-black z-20">
+        <p className="absolute left-[620px] top-[1390px] text-[10px] font-semibold text-black z-20">
           {oneData && oneData.length > 0 && oneData[0].Sukkur_D_S ? (
             oneData[0].Sukkur_D_S
           ) : (

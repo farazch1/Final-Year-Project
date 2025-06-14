@@ -15,7 +15,7 @@ export default function SensorDataDisplay() {
 
     async function fetchReading() {
       try {
-        const res = await fetch("http://192.168.32.172:3005/water-level");
+        const res = await fetch("http://192.168.69.172:3005/water-level");
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         if (isMounted) {
